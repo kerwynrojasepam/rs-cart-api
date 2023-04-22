@@ -1,0 +1,24 @@
+service: aws-pract-js-4-cart-service
+app: aws-pract-js-4-cart-service
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-west-1
+  stage: dev
+  environment: ${file(.env.${opt:stage, self:provider.stage}.json)}
+
+plugins:
+  - serverless-offline
+
+functions:
+  main:
+    handler: dist/main.handler
+    events:
+      - http:
+          method: ANY
+          path: /
+      - http:
+          method: ANY
+          path: '{proxy+}'
