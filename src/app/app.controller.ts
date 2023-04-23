@@ -1,4 +1,4 @@
-import { Controller, Get, Request, Post, UseGuards, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Request, Post, UseGuards, HttpStatus, Body } from '@nestjs/common';
 import { LocalAuthGuard, AuthService, BasicAuthGuard } from '../auth';
 
 @Controller()
@@ -14,10 +14,10 @@ export class AppController {
     };
   }
 
-  @UseGuards(LocalAuthGuard)
   @Post('api/auth/login')
+  @UseGuards(LocalAuthGuard)
   async login(@Request() req) {
-    const token = this.authService.login(req.user, 'basic');
+    const token = this.authService.login((req as any).user, 'basic');
 
     return {
       statusCode: HttpStatus.OK,

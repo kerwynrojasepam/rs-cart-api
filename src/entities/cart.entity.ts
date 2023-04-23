@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { StatusType } from '../typings/enum';
+import { CartItem } from './cart-item.entity';
 
 @Entity('carts')
 export class Cart {
@@ -17,4 +18,7 @@ export class Cart {
 
   @Column({ type: 'date', nullable: false })
   updatedAt: string;
+
+  @OneToMany(() => CartItem, (cartItems) => cartItems.cart)
+  cartItems: CartItem[];
 }

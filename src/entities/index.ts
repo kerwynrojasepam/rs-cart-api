@@ -1,6 +1,6 @@
-import { CartItems } from './cart-items.entity';
-import { Cart } from './carts.entity';
-import { Order } from './orders.entity';
-import { User } from './users.entity';
+import { CartItem } from './cart-item.entity';
+import { Cart } from './cart.entity';
+import { Order } from './order.entity';
+import { User } from './user.entity';
 
-export const entities = [User, Cart, CartItems, Order];
+export const entities = [User, Cart, CartItem, Order];

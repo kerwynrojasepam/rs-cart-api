@@ -1,17 +1,19 @@
 import { Column, Entity, OneToOne, JoinColumn, PrimaryColumn } from 'typeorm';
 
-import { Cart } from './carts.entity';
+import { Cart } from './cart.entity';
 
 @Entity('cart_items')
-export class CartItems {
+export class CartItem {
   @PrimaryColumn('uuid')
-  @OneToOne(() => Cart)
-  @JoinColumn({ referencedColumnName: 'id' })
   cartId: string;
 
   @Column({ type: 'uuid' })
   productId: string;
 
   @Column({ type: 'integer' })
-  count: number;
+  count: number;4
+
+  @OneToOne(() => Cart)
+  @JoinColumn({ referencedColumnName: 'id' })
+  cart: Cart;
 }
